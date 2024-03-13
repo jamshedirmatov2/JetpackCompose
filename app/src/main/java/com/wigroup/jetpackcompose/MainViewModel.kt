@@ -29,4 +29,10 @@ class MainViewModel : ViewModel() {
         }
         _models.value = copyList
     }
+
+    fun delete(model: InstagramModel) {
+        val copyList = _models.value?.toMutableList() ?: mutableListOf()
+        copyList.remove(model)
+        _models.value = copyList
+    }
 }
