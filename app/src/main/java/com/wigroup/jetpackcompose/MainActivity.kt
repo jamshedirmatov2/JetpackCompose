@@ -7,11 +7,11 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.wigroup.jetpackcompose.ui.component.InstagramProfileCard
 import com.wigroup.jetpackcompose.ui.theme.JetpackComposeTheme
 
@@ -28,12 +28,12 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
+                    val models = viewModel.models.observeAsState(listOf())
                     LazyColumn {
-                        items(1000) {
-                            InstagramProfileCard(
-                                viewModel = viewModel,
-                                modifier = Modifier.padding(8.dp)
-                            )
+                        items(models.value) {
+                            InstagramProfileCard(model = it) { model ->
+                                viewModel.changeFollowingState(model)
+                            }
                         }
                     }
                 }
