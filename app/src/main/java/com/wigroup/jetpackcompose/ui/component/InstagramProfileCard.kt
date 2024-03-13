@@ -34,12 +34,13 @@ import com.wigroup.jetpackcompose.R
 
 @Composable
 fun InstagramProfileCard(
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
+    modifier: Modifier = Modifier,
 ) {
     val isFollowed = viewModel.isFollowing.observeAsState(initial = false)
 
     Card(
-        modifier = Modifier.padding(8.dp),
+        modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
         shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground),

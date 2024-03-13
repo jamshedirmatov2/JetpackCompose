@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
-import com.wigroup.jetpackcompose.ui.component.InstagramProfileCard
+import com.wigroup.jetpackcompose.ui.component.MainScreen
 import com.wigroup.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    InstagramProfileCard(viewModel)
+                    MainScreen(viewModel = viewModel)
                 }
             }
         }
