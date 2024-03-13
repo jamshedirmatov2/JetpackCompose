@@ -3,11 +3,7 @@ package com.wigroup.jetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import com.wigroup.jetpackcompose.ui.component.InstagramProfileCard
+import com.wigroup.jetpackcompose.ui.component.MainScreen
 import com.wigroup.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,12 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    InstagramProfileCard()
-                }
+                MainScreen()
             }
         }
     }
