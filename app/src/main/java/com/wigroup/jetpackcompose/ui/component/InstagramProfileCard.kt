@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -26,10 +27,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.wigroup.jetpackcompose.InstagramModel
 import com.wigroup.jetpackcompose.R
 
 @Composable
-fun InstagramProfileCard() {
+fun InstagramProfileCard(
+    model: InstagramModel,
+    onFollowClick: (InstagramModel) -> Unit,
+) {
     Card(
         modifier = Modifier.padding(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
@@ -59,22 +64,36 @@ fun InstagramProfileCard() {
                 UserStatic(title = "Following", value = "76")
             }
             Text(
-                text = "Instagram",
+                text = "Instagram ${model.id}",
                 fontSize = 32.sp,
                 fontFamily = FontFamily.Cursive,
             )
             Text(
-                text = "#YoursToMake",
+                text = "#${model.title}",
                 fontSize = 14.sp,
             )
             Text(
                 text = "www.facebook.com/emotional_health",
                 fontSize = 14.sp,
             )
-            Button(onClick = {}) {
-                Text(text = "Follow")
-            }
+            FollowButton(isFollowed = model.isFollowed) { onFollowClick(model) }
         }
+    }
+}
+
+@Composable
+private fun FollowButton(
+    isFollowed: Boolean,
+    onClick: () -> Unit,
+) {
+    Button(
+        onClick = { onClick() },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = if (isFollowed) 0.5f else 1f),
+        ),
+    ) {
+        val text = if (isFollowed) "Unfollow" else "Follow"
+        Text(text = text)
     }
 }
 
